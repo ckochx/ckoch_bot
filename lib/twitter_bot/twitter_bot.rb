@@ -2,20 +2,24 @@ require 'twitter'
 
 module TwitterBot
   class TwitterBot
+    CHEESEBURGER_TWEET = "I LOVE cheeseburgers!! 🍔😱😩"
+    MILKSHAKE_TWEET = "I LOVE milkshakes!! 😍🍦😋🍨"
 
-    def hamburgers
-      connection.search(q='hamburgers')
+    def cheeseburgers
+      connection.search('cheeseburger').take(20)
     end
 
     def milkshakes
-
+      connection.search('milkshake')
     end
 
-    def method_name
-
+    def tweet_back(method='cheeseburgers', tweet_base=CHEESEBURGER_TWEET)
+      cb_array = self.send(method).map{ |tw| { username: tw.user.screen_name, id: tw.id, text: tw.text, user_id: tw.user.id } }
+      cb_array.sample(5).each do |tw|
+        tweet = "@#{tw[:username]} " + tweet_base
+        tweet(tweet, tw[:id])
+      end
     end
-
-
 
     private
 
@@ -28,5 +32,8 @@ module TwitterBot
       end
     end
 
+    def tweet(tweet, status_id=nil)
+      connection.update(tweet, in_reply_to_status_id: status_id)
+    end
   end
 end

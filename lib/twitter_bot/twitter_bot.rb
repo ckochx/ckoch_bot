@@ -4,10 +4,10 @@ module TwitterBot
   class TwitterBot
     EMOJIS = "😍🍦🍔🍨😋"
 
-    def tweet_back(query='cheeseburger')
+    def tweet_back(query='cheeseburger', sample_size=5)
       @query = query
       cb_array = search_tweets.map{ |tw| { username: tw.user.screen_name, id: tw.id, text: tw.text, user_id: tw.user.id } }
-      cb_array.sample(5).each do |tw|
+      cb_array.sample(sample_size).each do |tw|
         tweet = "@#{tw[:username]} " + tweet_text
         tweet(tweet, tw[:id])
       end

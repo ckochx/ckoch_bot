@@ -11,7 +11,7 @@ RSpec.describe "twitter_bot:search_cheeseburger" do
   context "search_cheeseburger" do
     it "calls twitter bot" do
       expect(TwitterBot::TwitterBot).to receive(:new).and_return(twitter_bot_double)
-      expect(twitter_bot_double).to receive(:tweet_back).with("cheeseburger")
+      expect(twitter_bot_double).to receive(:tweet_back).with("cheeseburger", 3)
 
       Rake::Task["twitter_bot:search_cheeseburger"].invoke
     end
@@ -20,7 +20,7 @@ RSpec.describe "twitter_bot:search_cheeseburger" do
   context "search_milkshake" do
     it "calls twitter bot" do
       expect(TwitterBot::TwitterBot).to receive(:new).and_return(twitter_bot_double)
-      expect(twitter_bot_double).to receive(:tweet_back).with("milkshake")
+      expect(twitter_bot_double).to receive(:tweet_back).with("milkshake", 3)
 
       Rake::Task["twitter_bot:search_milkshake"].invoke
     end

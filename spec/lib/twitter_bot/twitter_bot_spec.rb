@@ -83,6 +83,12 @@ describe TwitterBot::TwitterBot do
 
         subject.tweet_back
       end
+
+      it "takes a sample size argument" do
+        expect(twitter_double).to receive(:update).exactly(3).times
+
+        subject.tweet_back("cheeseburger" ,3)
+      end
     end
   end
 end

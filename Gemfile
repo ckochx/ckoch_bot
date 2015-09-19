@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.0'
 
 # Twitter-specific gems
 gem 'twitter'
+
 gem 'figaro'
 
 group :development, :test do

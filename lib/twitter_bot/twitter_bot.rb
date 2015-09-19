@@ -3,6 +3,22 @@ require 'twitter'
 module TwitterBot
   class TwitterBot
 
+    def hamburgers
+      connection.search(q='hamburgers')
+    end
+
+    def milkshakes
+
+    end
+
+    def method_name
+
+    end
+
+
+
+    private
+
     def connection
       @connection ||= Twitter::REST::Client.new do |config|
         config.consumer_key = ENV['consumer_key']

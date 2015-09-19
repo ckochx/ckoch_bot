@@ -37,7 +37,7 @@ describe TwitterBot::TwitterBot do
     it "cheeseburgers" do
       expect(twitter_double).to receive(:search).with('cheeseburger').and_return(sample)
 
-      subject.cheeseburgers
+      subject.search_tweets('cheeseburger')
     end
 
     context "with search results" do
@@ -49,40 +49,33 @@ describe TwitterBot::TwitterBot do
         expect(twitter_double).to receive(:search).with('cheeseburger')
         expect(twitter_double).to receive(:update).exactly(5).times
 
-        subject.tweet_back(:cheeseburgers)
+        subject.tweet_back('cheeseburger')
       end
 
       it "includes the user_name in the tweet_back" do
         expect(twitter_double).to receive(:update).with(/@user_screen_name/, anything).exactly(5).times
 
-        subject.tweet_back(:cheeseburgers)
+        subject.tweet_back('cheeseburger')
       end
 
       it "includes the tweet.id in the tweet_back args" do
         expect(twitter_double).to receive(:update).with(anything, Hash).exactly(5).times
 
-        subject.tweet_back(:cheeseburgers)
-      end
-
-      it "takes an optional message" do
-        expect(twitter_double).to receive(:update).with(/I SIMPLY ADORE cheeseburgers!!/ , anything).exactly(5).times
-
-        subject.tweet_back('cheeseburgers', 'I SIMPLY ADORE cheeseburgers!!')
+        subject.tweet_back('cheeseburger')
       end
 
       it "searches milkshakes too" do
         expect(twitter_double).to receive(:search).with('milkshake')
         expect(twitter_double).to receive(:update).exactly(5).times
 
-        subject.tweet_back(:milkshakes)
+        subject.tweet_back('milkshake')
       end
 
       it "tweets back milkshakes" do
         expect(twitter_double).to receive(:update).with(/I LOVE milkshakes!!/ , anything).exactly(5).times
 
-        subject.tweet_back('cheeseburgers', 'I LOVE milkshakes!!')
+        subject.tweet_back('milkshake')
       end
-
 
       it "handles smaller search results" do
         allow(twitter_double).to receive(:search).and_return(sample[0..1])

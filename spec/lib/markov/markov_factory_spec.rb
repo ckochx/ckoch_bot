@@ -10,17 +10,16 @@ RSpec.describe Markov::MarkovFactory do
     subject
   end
 
-  xit "creates a Markovian TextBuilder" do
+  it "creates a Markovian TextBuilder" do
     expect(Markovian::TextBuilder).to receive(:new).with(anything).and_call_original
 
     tweet = subject.tweet
-
-    puts "&"*77
-    p tweet
   end
 
-  xit "returns a tweet" do
-    expect(subject.tweet.length).to be <140
+  it "returns a tweet" do
+    25.times do
+      expect(subject.tweet.length).to be <140
+    end
   end
 
   context "path argument" do

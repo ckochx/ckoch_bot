@@ -1,4 +1,3 @@
-#encoding: utf-8
 "tweet_id","in_reply_to_status_id","in_reply_to_user_id","timestamp","source","text","retweeted_status_id","retweeted_status_user_id","retweeted_status_timestamp","expanded_urls"
 "645523100516380672","645522491478249472","1033367858","2015-09-20 09:01:15 +0000","<a href=""http://ckoch.co"" rel=""nofollow"">ckochx_bot</a>","@cashmeupp I LOVE cheeseburgers!! ","","","",""
 "645523101162283008","","1378583149","2015-09-20 09:01:15 +0000","<a href=""http://ckoch.co"" rel=""nofollow"">ckochx_bot</a>","@sirfreestone I LOVE cheeseburgers!! ","","","",""

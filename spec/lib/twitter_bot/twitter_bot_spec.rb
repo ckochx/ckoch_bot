@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'twitter_bot/twitter_bot'
 
-describe TwitterBot::TwitterBot do
+RSpec.describe TwitterBot::TwitterBot do
   let(:twitter_double) { Twitter::REST::Client.new }
   let(:subject) { described_class.new }
   let(:sample) {

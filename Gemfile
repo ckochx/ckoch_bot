@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 
 gem 'passenger'
 
+gem 'markovian'
 # gem 'rails_12factor'
 # Twitter-specific gems
 gem 'twitter'
@@ -17,6 +21,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'better_errors'
+
+  gem 'timecop'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

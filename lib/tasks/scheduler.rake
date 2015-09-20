@@ -16,9 +16,11 @@ namespace :twitter_bot do
   desc "This task (twitter_bot:search_milkshake) is called by the Heroku scheduler add-on"
   task :search_milkshake => :environment do
     puts "Hour is: #{Time.now.hour}"
-    puts "Beginning milkshake tweet-back."
-    TwitterBot::TwitterBot.new.tweet_back('milkshake', 3)
-    puts "done."
+    if (Time.now.hour%2 == 0)
+      puts "Beginning milkshake tweet-back."
+      TwitterBot::TwitterBot.new.tweet_back('milkshake', 3)
+      puts "done."
+    end
   end
 
   desc "This task (twitter_bot:markov_tweet) is called by the Heroku scheduler add-on"

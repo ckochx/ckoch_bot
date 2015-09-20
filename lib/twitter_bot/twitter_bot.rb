@@ -18,6 +18,14 @@ module TwitterBot
       connection.search(current_query).take(25)
     end
 
+    def tweet(tweet, status_id=nil)
+      if status_id.nil?
+        connection.update(tweet)
+      else
+        connection.update(tweet, in_reply_to_status_id: status_id)
+      end
+    end
+
     private
 
     def connection
@@ -27,10 +35,6 @@ module TwitterBot
         config.access_token = ENV['access_token']
         config.access_token_secret = ENV['access_secret']
       end
-    end
-
-    def tweet(tweet, status_id=nil)
-      connection.update(tweet, in_reply_to_status_id: status_id)
     end
 
     def tweet_text

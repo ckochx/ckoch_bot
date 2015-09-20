@@ -40,6 +40,13 @@ RSpec.describe TwitterBot::TwitterBot do
       subject.search_tweets('cheeseburger')
     end
 
+    it "does not send :in_reply_to_status_id if absent" do
+      tweet = "I love these apples"
+      expect(twitter_double).to receive(:update).with(tweet)
+
+      subject.tweet(tweet)
+    end
+
     context "with search results" do
       before do
         allow(twitter_double).to receive(:search).and_return(sample)

@@ -28,7 +28,8 @@ namespace :twitter_bot do
     puts "Hour is: #{Time.now.hour}"
     if (Time.now.hour%3 == 0)
       puts "Beginning markov tweet."
-      Markov::MarkovFactory.new.tweet
+      tweet = Markov::MarkovFactory.new.tweet
+      TwitterBot::TwitterBot.new.tweet(tweet)
       puts "done tweeting markovian."
     end
   end

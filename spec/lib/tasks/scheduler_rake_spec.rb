@@ -25,6 +25,8 @@ RSpec.describe "twitter_bot" do
     if Time.now.hour%3 == 0
       expect(Markov::MarkovFactory).to receive(:new).and_return(markov_double)
       expect(markov_double).to receive(:tweet)
+      expect(TwitterBot::TwitterBot).to receive(:new).and_return(twitter_bot_double)
+      expect(twitter_bot_double).to receive(:tweet).with(anything)
     else
       expect(Markov::MarkovFactory).to_not receive(:new)
     end

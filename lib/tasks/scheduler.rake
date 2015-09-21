@@ -28,7 +28,9 @@ namespace :twitter_bot do
     puts "Hour is: #{Time.now.hour}"
     if (Time.now.hour%3 == 0)
       puts "Beginning markov tweet."
-      tweet = Markov::MarkovFactory.new.tweet
+      markov_factory = Markov::MarkovFactory.new
+      hashtag = markov_factory.random_word
+      tweet = markov_factory.short_tweet + "##{hashtag}"
       TwitterBot::TwitterBot.new.tweet(tweet)
       puts "done tweeting markovian."
     end

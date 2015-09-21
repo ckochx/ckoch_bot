@@ -22,6 +22,16 @@ RSpec.describe Markov::MarkovFactory do
     end
   end
 
+  it "returns a short tweet" do
+    25.times do
+      expect(subject.short_tweet.length).to be <131
+    end
+  end
+
+  it "#random_word" do
+    expect(subject.random_word.class).to eq String
+  end
+
   context "path argument" do
     it "takes an optional path argument" do
       expect(Markovian::Importers::Twitter::CsvImporter).to receive(:new).with('spec/fixtures/tweets.csv').and_call_original

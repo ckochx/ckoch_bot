@@ -8,8 +8,19 @@ module Markov
       @importer ||= Markovian::Importers::Twitter::CsvImporter.new(path)
     end
 
+    def short_tweet
+      loop do
+        this_tweet = tweet
+        return this_tweet if tweet.length <= 130
+      end
+    end
+
     def tweet
       text_builder.construct(random_word)
+    end
+
+    def random_word
+      corpus.random_word
     end
 
     private
@@ -20,10 +31,6 @@ module Markov
 
     def corpus
       @corpus ||= importer.corpus
-    end
-
-    def random_word
-      corpus.random_word
     end
   end
 end

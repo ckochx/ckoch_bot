@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'rake'
 
 RSpec.describe "twitter_bot" do
-  let(:twitter_bot_double) { double("twitter_bot", tweet_back: true) }
-  let(:markov_double) { double("markov", tweet: true) }
+  let(:twitter_bot_double) { double("twitter_bot", tweet_back: true, tweet: true) }
+  let(:markov_double) { double("markov", short_tweet: "My brief thought", random_word: "blueballs") }
 
   before do
     Rake.application.rake_require "tasks/scheduler"
@@ -24,7 +24,7 @@ RSpec.describe "twitter_bot" do
   it "#markov_tweet only runs every 3 hours" do
     if Time.now.hour%3 == 0
       expect(Markov::MarkovFactory).to receive(:new).and_return(markov_double)
-      expect(markov_double).to receive(:tweet)
+      expect(markov_double).to receive(:short_tweet)
       expect(TwitterBot::TwitterBot).to receive(:new).and_return(twitter_bot_double)
       expect(twitter_bot_double).to receive(:tweet).with(anything)
     else

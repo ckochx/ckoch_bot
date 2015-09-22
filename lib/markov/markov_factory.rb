@@ -4,7 +4,7 @@ module Markov
   class MarkovFactory
     attr_reader :importer
 
-    def initialize(path='spec/fixtures/tweets.csv')
+    def initialize(path='spec/fixtures/text.csv')
       @importer ||= Markovian::Importers::Twitter::CsvImporter.new(path)
     end
 

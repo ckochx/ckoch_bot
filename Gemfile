@@ -9,6 +9,8 @@ gem 'rails', '4.2.4'
 gem 'passenger'
 
 gem 'markovian'
+gem 'markovian-tools', git: 'https://github.com/arsduo/markovian-tools.git'
+
 # gem 'rails_12factor'
 # Twitter-specific gems
 gem 'twitter'

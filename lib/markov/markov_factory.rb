@@ -1,11 +1,13 @@
 require 'markovian'
+require 'markovian/tools'
+require 'markovian/importers/tweeter/csv_importer'
 
 module Markov
   class MarkovFactory
     attr_reader :importer
 
     def initialize(path='spec/fixtures/text.csv')
-      @importer ||= Markovian::Importers::Twitter::CsvImporter.new(path)
+      @importer ||= Markovian::Importers::Tweeter::CsvImporter.new(path)
     end
 
     def short_tweet
@@ -20,17 +22,17 @@ module Markov
     end
 
     def random_word
-      corpus.random_word
+      chain.random_word
     end
 
     private
 
     def text_builder
-      Markovian::TextBuilder.new(corpus)
+      Markovian::TextBuilder.new(chain)
     end
 
-    def corpus
-      @corpus ||= importer.corpus
+    def chain
+      @chain ||= importer.chain
     end
   end
 end

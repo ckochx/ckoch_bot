@@ -1,6 +1,4 @@
 require 'markovian'
-require 'markovian/tools'
-require 'markovian/importers/tweeter/csv_importer'
 
 module Markov
   class MarkovFactory
